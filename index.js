@@ -1,24 +1,50 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
+var mongoDB = 'mongodb://127.0.0.1/test';
+mongoose.connect(mongoDB);
+// Get Mongoose to use the global promise library
+mongoose.Promise = global.Promise;
+//Get the default connection
+var db = mongoose.connection;
+
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+var Schema = mongoose.Schema;
+
+var userDataSchema = new Schema({
+  country: {type: String,required: true},
+  precipitation: String,
+  temperature: String
+});
+
+var UserData = mongoose.model('UserData', userDataSchema);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Form Validation', success: req.session.success, errors: req.session.errors });
-  req.session.errors = null;
+  res.render('index');
 });
 
-router.post('/submit', function(req, res, next) {
-  req.check('email', 'Invalid email address').isEmail();
-  req.check('password', 'Password is invalid').isLength({min: 4}).equals(req.body.confirmPassword);
+router.get('/get-data', function(req, res, next) {
+    UserData.find()
+      .then(function(doc) {
+        res.render('index', {items: doc});
+      });
+});
 
-  var errors = req.validationErrors();
-  if (errors) {
-    req.session.errors = errors;
-    req.session.success = false;
-  } else {
-    req.session.success = true;
-  }
+router.post('/insert', function(req, res, next) {
+  var item = {
+    country: req.body.title,
+    precipitation: req.body.content,
+    temperature: req.body.author
+  };
+
+  var data = new UserData(item);
+  data.save();
+
   res.redirect('/');
 });
 
 module.exports = router;
+
