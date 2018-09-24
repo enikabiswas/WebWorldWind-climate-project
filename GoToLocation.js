@@ -22,14 +22,10 @@
  each city should have details about it */
 
  /*Front end probs:
-  Also, there should be a dropdown of the users history
+  Need to add a dropdown of the users history
+  Display the monthly temp and precipitation change in a table once the user hovers over the search button 
 */
 
-/*Backend probs:
-   Need to use node.js to access database
-   How to use the dataset's api capabilities and store into a databse
-   Add html into the display showing the data values after being parsed
-*/
 
 requirejs(['./WorldWindShim',
         './LayerManager'],
