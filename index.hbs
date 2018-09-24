@@ -1,18 +1,18 @@
-<h1>MONGODB - EXERCISE</h1>
+<h1>Annual change</h1>
 <section class="insert">
     <h3>Insert Data</h3>
     <form action="/insert" method="post">
         <div class="input">
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title">
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country">
         </div>
         <div class="input">
-            <label for="content">Content</label>
-            <input type="text" id="content" name="content">
+            <label for="precipitation">Precipitation</label>
+            <input type="text" id="precipitation" name="precipitation">
         </div>
         <div class="input">
-            <label for="author">Author</label>
-            <input type="text" id="author" name="author">
+            <label for="temperature">Temperature</label>
+            <input type="text" id="temperature" name="temperature">
         </div>
         <button type="submit">INSERT</button>
     </form>
@@ -23,9 +23,9 @@
     <div>
         {{# each items }}
             <article class="item">
-                <div>Title: {{ this.title }}</div>
-                <div>Content: {{ this.content }}</div>
-                <div>Author: {{ this.author }}</div>
+                <div>Country: {{ this.country }}</div>
+                <div>Precipitation: {{ this.precipitation }}</div>
+                <div>Temperature: {{ this.temperature }}</div>
                 <div>ID: {{ this._id }}</div>
             </article>
         {{/each}}
@@ -39,16 +39,16 @@
             <input type="text" id="id" name="id">
         </div>
         <div class="input">
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title">
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country">
         </div>
         <div class="input">
-            <label for="content">Content</label>
-            <input type="text" id="content" name="content">
+            <label for="precipitation">Precipitation</label>
+            <input type="text" id="precipitation" name="precipitation">
         </div>
         <div class="input">
-            <label for="author">Author</label>
-            <input type="text" id="author" name="author">
+            <label for="temperature">Temperature</label>
+            <input type="text" id="temperature" name="temperature">
         </div>
         <button type="submit">UPDATE</button>
     </form>
@@ -64,3 +64,4 @@
         <button type="submit">DELETE</button>
     </form>
 </section>
+
